@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import echarts from 'echarts'
-
+import NavBar from './NavBar'
 class GraphComponent extends Component {
 
   componentDidMount() {
@@ -29,8 +29,12 @@ class GraphComponent extends Component {
     })
   }
   render() {
+    const {value, setValue} = this.props
     return(
-      <div id="main" style={style}>test</div>
+      <div>
+        <NavBar value={value} setValue={setValue}/>
+        <div id="main" style={style}>test</div>
+      </div>
     )
   }
 }

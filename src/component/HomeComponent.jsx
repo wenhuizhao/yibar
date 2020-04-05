@@ -22,21 +22,21 @@ import echarts from 'echarts'
 import axios from 'axios'
 import moment from 'moment'
 import { statesHash, statesReverseHash } from './states_hash'
+import NavBar from './NavBar'
 
 class HomeComponent extends Component {
   constructor(props) {
     super(props)
+    this.usDailyData = [];
     this.stateDailyData = [];
     this.stateCurrent = {};
     this.stateDailyLast = [];
     this.state = {
-      usCurrentPositive: '',
-      usCurrentHospitalized: '',
-      usCurrentDeath: '',
-      usCurrentTotal: '',
-      selectedState: '',
+      current: {},
+      selectedState: 'US',
       stateCurrentData: [],
       stateInfo: {},
+      matches: window.matchMedia("(min-width:675px").matches
     }
   }
 
@@ -49,6 +49,8 @@ class HomeComponent extends Component {
     this.loadStateDaily()
     this.loadStateInfo()
     this.loadUsMap()
+    const handler = e => this.setState({matches: e.matches});
+    window.matchMedia("(min-width: 675px)").addListener(handler);
   }
 
   loadUsCurrent() {
@@ -56,10 +58,7 @@ class HomeComponent extends Component {
         .then((resp) => {
           const data = resp.data[0];
           this.setState({
-            usCurrentPositive: data.positive,
-            usCurrentHospitalized: data.hospitalized,
-            usCurrentDeath: data.death,
-            usCurrentTotal: data.total
+            current: data
           })
         })
   }
@@ -67,7 +66,8 @@ class HomeComponent extends Component {
     axios.get('https://covidtracking.com/api/us/daily')
       .then((resp) => {
         //console.log(resp)
-        this.draw(resp.data.reverse())
+        this.usDailyData = resp.data.reverse()
+        this.draw(this.usDailyData)
       })
   }
   loadStateDaily() {
@@ -278,6 +278,12 @@ class HomeComponent extends Component {
   handleChange(event){
     //console.log(this.state.stateDailyData)
     this.setState({selectedState: event.target.value})
+    if (event.target.value === 'US') {
+      this.loadUsCurrent()
+      this.loadUsDaily()
+      return
+    }
+    this.setState({current: this.state.stateCurrentData.find((d)=>d.state===event.target.value)})
     const data = this.stateDailyData.filter((d)=> d.state === event.target.value).reverse()
     //console.log(data)
     this.draw(data)
@@ -292,18 +298,17 @@ class HomeComponent extends Component {
       xAxis: {
           data: data.map((d)=> moment(d.date, 'YYYYMMDD').format('l'))
       },
-      yAxis: {},
+      yAxis: {
+        axisLabel: {
+          formatter: (value) => {return value/1000+'k'}
+        }
+      },
       dataZoom: [
         {   // 这个dataZoom组件，默认控制x轴。
             type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
             start: 0,      // 左边在 10% 的位置。
             end: 100         // 右边在 100% 的位置。
         },
-        {   // 这个dataZoom组件，也控制x轴。
-            type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
-            start: 0,      // 左边在 10% 的位置。
-            end: 100         // 右边在 100% 的位置。
-        }
       ],  
       series: [
         {
@@ -354,18 +359,22 @@ class HomeComponent extends Component {
     this.setState({stateCurrentData: data})
   }
   render() {
+    console.log('Home Component: props', this.props)
+    const {value, setValue} = this.props
     return(
       <div style={style}>
+        <NavBar value={value} setValue={setValue}/>
         <div style={topStyle}>
           <Grid container spacing={2} justify="space-around" alignItems="flex-end">
             <Grid item container xs={10} sm={4} direction="column" alignItems='flex-start'>
               <Grid item>
-                <Typography variant='body1'>U.S. Covid-19 data</Typography>
+                <Typography variant='body1'>{this.state.selectedState === 'US' ? 'US' : 
+                  statesHash[this.state.selectedState]}</Typography>
               </Grid>
               <Grid item container justify="flex-start" spacing={5} >
                 <Grid item>
                   <Typography variant="h4" style={cardTitleStyle}>
-                    {this.state.usCurrentPositive}
+                    {this.state.current.positive}
                   </Typography>
                   <Typography variant="body2">
                     Confirmed
@@ -373,7 +382,7 @@ class HomeComponent extends Component {
                 </Grid>
                 <Grid item>
                   <Typography variant="h4" style={cardTitleStyle}>
-                    {this.state.usCurrentDeath}
+                    {this.state.current.death}
                   </Typography>
                   <Typography variant="body2">
                     Death
@@ -381,10 +390,11 @@ class HomeComponent extends Component {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1} style={formGrid}>
               <FormControl style={formControl}>
                 <InputLabel>State</InputLabel>
                 <Select onChange={this.handleChange.bind(this)} value={this.state.selectedState}>
+                  <MenuItem key='US' value='US'>US</MenuItem>
                   {Object.keys(statesHash).map(key=>(
                     <MenuItem key={key} value={key}>{key}</MenuItem>
                   ))}
@@ -395,18 +405,18 @@ class HomeComponent extends Component {
         </div>
         <div id="main1" style={main1Style} ></div>
         <div id="main2" style={main2Style} ></div>
-        <TableContainer style={tableStyle} component={Paper}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow style={tableHead}>
+        <Grid item xs={12} style={tableGridStyle}>
+          <Table aria-label="simple table" style={tableStyle}>
+            <TableHead style={tableHead}>
+              <TableRow>
                 <TableCell  style={cellHead}>State</TableCell>
                 <TableCell  style={cellHeadRed} onClick={()=>this.handleClick('death')}>Death</TableCell>
                 <TableCell  style={cellHeadRed} onClick={()=>this.handleClick('deathIncrease')}>Death Increase</TableCell>
                 <TableCell  style={cellHead} onClick={()=>this.handleClick('positive')}>Positive</TableCell>
                 <TableCell  style={cellHead} onClick={()=>this.handleClick('positiveIncrease')}>Positive Increase</TableCell>
-                <TableCell  style={cellHead} onClick={()=>this.handleClick('hospitalized')}>Hospitalized</TableCell>
-                <TableCell  style={cellHead} onClick={()=>this.handleClick('total')}>Tested</TableCell>
-                <TableCell style={tableHead}>Website</TableCell>
+                {this.state.matches && <TableCell  style={cellHead} onClick={()=>this.handleClick('hospitalized')}>Hospitalized</TableCell>}
+                {this.state.matches && <TableCell  style={cellHead} onClick={()=>this.handleClick('total')}>Tested</TableCell>}
+                {this.state.matches && <TableCell style={tableHead}>Website</TableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -417,20 +427,20 @@ class HomeComponent extends Component {
                   <TableCell style={cellRed}>+{row.deathIncrease}</TableCell>
                   <TableCell>{row.positive}</TableCell>
                   <TableCell>+{row.positiveIncrease}</TableCell>
-                  <TableCell>{row.hospitalized}</TableCell>
-                  <TableCell>{row.totalTestResults}</TableCell>
-                  <TableCell>
-                    <Link href={this.state.stateInfo[row.state].covid19Site}>State site</Link>
-                    {this.state.stateInfo[row.state].covid19SiteSecondary ?
-                      <Link href={this.state.stateInfo[row.state].covid19SiteSecondary}>, Secondary</Link>
+                  {this.state.matches && <TableCell>{row.hospitalized}</TableCell>}
+                  {this.state.matches && <TableCell>{row.totalTestResults}</TableCell>}
+                  {this.state.matches && <TableCell>
+                    <Link href={(this.state.stateInfo[row.state]||{}).covid19Site}>State site</Link>
+                    {(this.state.stateInfo[row.state]||{}).covid19SiteSecondary ?
+                      <Link href={(this.state.stateInfo[row.state]||{}).covid19SiteSecondary}>, Secondary</Link>
                       : null
                     }
-                  </TableCell>
+                  </TableCell>}
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </TableContainer>
+        </Grid>
       </div>
     )
   }
@@ -452,27 +462,36 @@ const topStyle = {
 }
 const main1Style = {
  // flex: 1
-  minHeight: "90vh"
+  minHeight: "40vh"
 }
 const main2Style = {
 //  flex: 1
+  minHeight: "40vh"
+}
+const formGrid = {
+  minWidth: "120px"
+}
+const tableGridStyle = {
   minHeight: "90vh"
 }
 const tableStyle = {
-  minHeight: "90vh"
+  width: "100%"
 }
 const tableHead = {
   backgroundColor: '#eee',
 }
 const cellHead = {
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  fontSize: '9pt'
 }
 const cellHeadRed = {
   fontWeight: 'bold',
-  backgroundColor: '#eecccc'
+  backgroundColor: '#eecccc',
+  fontSize: '9pt'
 }
 const cellRed = {
-  backgroundColor: '#eecccc'
+  backgroundColor: '#eecccc',
+  fontSize: '9pt',
 }
 const cardStyle = {
   backgroundColor: '#ccc',

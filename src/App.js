@@ -1,14 +1,12 @@
 import React from 'react'
 import './App.css'
 import AppRouter from './component/RouterComponent'
-import NavBar from './component/NavBar'
 import Container from '@material-ui/core/Container'
 
 function App() {
   return (
-    <div style={style}>
-      <NavBar/>
-      <Container style={containerStyle}>
+    <div>
+      <Container style={style}>
         <AppRouter/>
       </Container>
     </div>
@@ -16,11 +14,9 @@ function App() {
 }
 
 const style= {
-  display: "flex",
-  'flexDirection': "column",
-  //'minHeight': "100vh",  
+  padding: 0
 }
-const containerStyle = {
-  flex: 1
-}
+// const containerStyle = {
+//   flex: 1
+// }
 export default App;

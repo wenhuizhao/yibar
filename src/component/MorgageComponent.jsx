@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import NavBar from './NavBar'
 class MorgageComponent extends Component {
 
   constructor(props) {
@@ -22,8 +23,12 @@ class MorgageComponent extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
   render() {
+    const {value, setValue} = this.props
+
     return (
-      <div> 
+      <div>
+        <NavBar value={value} setValue={setValue}/>
+ 
         <Typography variant="h4" style={style}>
           Your morgage
         </Typography>
