@@ -289,11 +289,19 @@ class HomeComponent extends Component {
     this.draw(data)
   }
   draw(data) {
+    var zoomStart = data.length <= 14 ? 0 : Math.floor((data.length - 14)*100/data.length);
+
     this.chart1.setOption({
       title: {
         text: ''
       },
-      legend: {},
+      legend: {
+        top: 0,
+        selected: {
+          'Tested': false,
+          'Tested Increase': false
+        }
+      },
       tooltip: {},
       xAxis: {
           data: data.map((d)=> moment(d.date, 'YYYYMMDD').format('l'))
@@ -304,10 +312,10 @@ class HomeComponent extends Component {
         }
       },
       dataZoom: [
-        {   // 这个dataZoom组件，默认控制x轴。
-            type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
-            start: 0,      // 左边在 10% 的位置。
-            end: 100         // 右边在 100% 的位置。
+        {
+            type: 'slider', 
+            start: zoomStart, 
+            end: 100         
         },
       ],  
       series: [
@@ -366,14 +374,14 @@ class HomeComponent extends Component {
         <NavBar value={value} setValue={setValue}/>
         <div style={topStyle}>
           <Grid container spacing={2} justify="space-around" alignItems="flex-end">
-            <Grid item container xs={10} sm={4} direction="column" alignItems='flex-start'>
+            <Grid item container xs={8} direction="column" alignItems='flex-start'>
               <Grid item>
                 <Typography variant='body1'>{this.state.selectedState === 'US' ? 'US' : 
                   statesHash[this.state.selectedState]}</Typography>
               </Grid>
               <Grid item container justify="flex-start" spacing={5} >
                 <Grid item>
-                  <Typography variant="h4" style={cardTitleStyle}>
+                  <Typography variant="h5" style={cardTitleStyle}>
                     {this.state.current.positive}
                   </Typography>
                   <Typography variant="body2">
@@ -381,7 +389,7 @@ class HomeComponent extends Component {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="h4" style={cardTitleStyle}>
+                  <Typography variant="h5" style={cardTitleStyle}>
                     {this.state.current.death}
                   </Typography>
                   <Typography variant="body2">
