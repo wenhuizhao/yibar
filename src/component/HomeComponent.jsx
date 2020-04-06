@@ -296,10 +296,11 @@ class HomeComponent extends Component {
         text: ''
       },
       legend: {
-        top: 0,
+        type: 'scroll',
         selected: {
           'Tested': false,
-          'Tested Increase': false
+          'Tested Increase': false,
+          'Pending': false
         }
       },
       tooltip: {},
@@ -358,6 +359,11 @@ class HomeComponent extends Component {
           name: 'Tested Increase',
           type: 'line',
           data: data.map((d)=>d.totalTestResultsIncrease)
+        },
+        {
+          name: 'Pending',
+          type: 'line',
+          data: data.map((d)=>d.pending)
         }
       ]
     })
