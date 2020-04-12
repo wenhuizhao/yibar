@@ -20,7 +20,7 @@ class IndexComponent extends Component {
         <NavBar value={value} setValue={setValue}/>
         <Box m={1}>
               <Typography variant="h4">
-                Coronavirus information sites
+                Coronavirus Fnformation Sites
               </Typography>
               <Box fontSize={14} m={2}>
                 <List>
@@ -44,6 +44,17 @@ class IndexComponent extends Component {
                     url="https://coronavirus.jhu.edu/map.html"
                   />
                 </ListItem>
+                <ListItem>
+                  <ReactTinyLink
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://www.latimes.com/projects/california-coronavirus-cases-tracking-outbreak/"
+                  />
+                </ListItem>
+
                 <ListItem>
                   <ReactTinyLink
                     cardSize="small"
