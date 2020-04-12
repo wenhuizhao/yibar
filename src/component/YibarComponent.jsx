@@ -24,7 +24,7 @@ import moment from 'moment'
 import { statesHash, statesReverseHash } from './states_hash'
 import NavBar from './NavBar'
 
-class HomeComponent extends Component {
+class YibarComponent extends Component {
   constructor(props) {
     super(props)
     this.usDailyData = [];
@@ -373,7 +373,7 @@ class HomeComponent extends Component {
     this.setState({stateCurrentData: data})
   }
   render() {
-    console.log('Home Component: props', this.props)
+    //console.log('Home Component: props', this.props)
     const {value, setValue} = this.props
     return(
       <div style={style}>
@@ -520,4 +520,4 @@ const formControl = {
   minWidth: 120,
 }
 
-export default HomeComponent
+export default YibarComponent

@@ -21,6 +21,7 @@ const style = {
 
 const menus = [
   { label: "Home", page: "./" },
+  { label: 'Covid19', page: "./yibar" },
   { label: "About", page: "./about" }
 ];
 const Nav = ({ value, setValue }) => {
@@ -44,7 +45,7 @@ const Nav = ({ value, setValue }) => {
           aria-label="Navigation Tabs"
         >
           {menus.map((menu)=>(
-              <Tab label={menu.label} />
+              <Tab label={menu.label} key={menu.page}/>
           ))}
         </Tabs>
       </Grid>

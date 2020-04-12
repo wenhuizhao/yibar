@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from "react";
-import HomeComponent from "./HomeComponent";
+import YibarComponent from "./YibarComponent";
 import GraphComponent from "./GraphComponent";
 import MorgageComponent from "./MorgageComponent";
 import AboutComponent from "./AboutComponent";
+import IndexComponent from './IndexComponent'
 
 const AppRouter = () => {
   const [value, setValue] = React.useState(0);
@@ -12,11 +13,18 @@ const AppRouter = () => {
     <div>
       <Router>
         <Switch>
-          <Route
+        <Route
             path="/"
             exact
             render={props => (
-              <HomeComponent {...props} value={value} setValue={setValue} />
+              <IndexComponent {...props} value={value} setValue={setValue} />
+            )}
+          />
+          <Route
+            path="/yibar"
+            exact
+            render={props => (
+              <YibarComponent {...props} value={value} setValue={setValue} />
             )}
           />
           <Route

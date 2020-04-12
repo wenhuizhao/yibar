@@ -20,27 +20,8 @@ class AboutComponent extends Component {
         <Box m={1}>
 
               <Box fontSize={18} m={2}>
-                Yibar.com provides COVID-19 data visualization. The data is provided by 
+                Yibar.com is a site with coronavirus related links. It also provides COVID-19 data visualization. The data is provided by 
                 <a href="https://covidtracking.com/"> The COVID Tracking Project. </a>
-              </Box>
-              <Typography variant="h4">
-                Coronavirus informatin sites
-              </Typography>
-              <Box fontSize={14} m={2}>
-                <List>
-                  <ListItemLink href="https://www.worldometers.info/coronavirus/">Wordometer world information</ListItemLink>
-                  <ListItemLink href="https://coronavirus.jhu.edu/">John Hopkins University Coronavirus site</ListItemLink>
-                  <ListItemLink href="http://www.healthdata.org/">Heathdata.org prediction model </ListItemLink>
-                  <ListItemLink href="https://covidtracking.com">The Covid Tacking Project</ListItemLink>
-                  <ListItemLink href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports">
-                    World Health Organization Reports
-                  </ListItemLink>
-                  <ListItemLink href="https://www.google.com/covid19/mobility/">
-                    Google Covid-19 Community Mobility map
-                  </ListItemLink>
-                  <ListItemLink href="https://coronavirus.1point3acres.com/">1point3acres coronavirus information</ListItemLink>
-                  <ListItemLink href="https://covid-19.direct">Bay Area Covid-19 data</ListItemLink>
-                </List>
               </Box>
               <Typography variant="h5">
                 How "The COVID Tracking Project" collect data?
