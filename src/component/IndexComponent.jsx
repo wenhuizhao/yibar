@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem'
 import Link from '@material-ui/core/Link'
 import Box from '@material-ui/core/Box'
 import { ReactTinyLink } from 'react-tiny-link'
+import FeedBack from 'react-feedback-popup'
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
@@ -118,7 +119,38 @@ class IndexComponent extends Component {
 
                 </List>
               </Box>
-          </Box>    
+          </Box>
+
+          <FeedBack
+                position="right"
+                showEmailInput={false}
+                showNameInput={false}
+                showRatingInput={false}
+                headerText="Suggest a link"
+                bodyText="You have a usefule coronavirus website to share?"
+                buttonText="Suggest a Webiste"
+                handleClose={() => console.log("handleclose")}
+                handleSubmit={(data) => 
+                    fetch('http://www.study32.com/feedbacks', {
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        method: 'POST', // or 'PUT'
+                        body: JSON.stringify(data),
+                    }).then((response) => { 
+                        if (!response.ok) {
+                            return Promise.reject('Our servers are having issues! We couldn\'t send your feedback!');
+                        }
+                        response.json()
+                    }).then(() => {
+                        alert('Success!');
+                    }).catch((error) => {
+                        alert('Our servers are having issues! We couldn\'t send your feedback!', error);
+                    })
+                }
+                handleButtonClick={() => console.log("handleButtonClick")}
+            />
       </div>
     )
   }
