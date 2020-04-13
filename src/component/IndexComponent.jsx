@@ -21,12 +21,13 @@ class IndexComponent extends Component {
         <NavBar value={value} setValue={setValue}/>
         <Box m={1}>
               <Typography variant="h4">
-                Coronavirus Fnformation Sites
+                Coronavirus Information Sites
               </Typography>
               <Box fontSize={14} m={2}>
                 <List>
                 <ListItem>
                   <ReactTinyLink
+                    header="World Information"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -37,6 +38,7 @@ class IndexComponent extends Component {
                 </ListItem>
                 <ListItem>
                   <ReactTinyLink
+                    header="Johns Hopkins University interactive map"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -47,6 +49,7 @@ class IndexComponent extends Component {
                 </ListItem>
                 <ListItem>
                   <ReactTinyLink
+                    header="LA times California Coronavirus Data"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -58,6 +61,7 @@ class IndexComponent extends Component {
 
                 <ListItem>
                   <ReactTinyLink
+                    header="IHME COVID-19 Prediction Model"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -68,6 +72,7 @@ class IndexComponent extends Component {
                 </ListItem>
                 <ListItem>
                   <ReactTinyLink
+                    header="Covid Tracking Project"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -78,6 +83,7 @@ class IndexComponent extends Component {
                 </ListItem>
                 <ListItem>
                   <ReactTinyLink
+                    header="WHO Covid-19 Report"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -88,6 +94,7 @@ class IndexComponent extends Component {
                 </ListItem>
                 <ListItem>
                   <ReactTinyLink
+                    header="Google COVID-19 Community Mobility Report"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -98,6 +105,7 @@ class IndexComponent extends Component {
                 </ListItem>
                 <ListItem>
                   <ReactTinyLink
+                    header="1point3acres COVID-19 page(一亩三分地)"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
@@ -108,12 +116,24 @@ class IndexComponent extends Component {
                 </ListItem>
                 <ListItem>
                   <ReactTinyLink
+                    header="Northern California County report"
                     cardSize="small"
                     showGraphic={true}
                     maxLine={2}
                     minLine={1}
                     width={"100vw"}
                     url="https://covid-19.direct"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ReactTinyLink
+                    header="Washington State Vulerability Index for Covid-19"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="http://chaselab.net/Covid19RiskMap/Covid19.htm"
                   />
                 </ListItem>
 
