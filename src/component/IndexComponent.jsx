@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link'
 import Box from '@material-ui/core/Box'
 import { ReactTinyLink } from 'react-tiny-link'
 import FeedBack from 'react-feedback-popup'
+import './IndexComponent.css'
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
@@ -20,7 +21,7 @@ class IndexComponent extends Component {
       <div>
         <NavBar value={value} setValue={setValue}/>
         <Box m={1}>
-              <Typography variant="h4">
+              <Typography variant="h5">
                 Coronavirus Information Sites
               </Typography>
               <Box fontSize={14} m={2}>
@@ -30,7 +31,7 @@ class IndexComponent extends Component {
                     header="World Information"
                     cardSize="small"
                     showGraphic={true}
-                    maxLine={2}
+                    maxLine={4}
                     minLine={1}
                     width={"100vw"}
                     url="https://www.worldometers.info/coronavirus/"
@@ -134,6 +135,17 @@ class IndexComponent extends Component {
                     minLine={1}
                     width={"100vw"}
                     url="http://chaselab.net/Covid19RiskMap/Covid19.htm"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ReactTinyLink
+                    header="Realtime Tracking of Coronavrius"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://nextstrain.org/ncov/global"
                   />
                 </ListItem>
 
