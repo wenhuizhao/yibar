@@ -21,6 +21,10 @@ const style = {
 
 const menus = [
   { label: "Home", page: "./" },
+  { label: 'School Area', page: "./schoolarea" },
+  { label: 'UC Admission', page: "./ucdata" },
+  { label: 'UC Rank', page: "./ucrank" },
+  { label: 'UC Map', page: "./ucmap" },
   { label: 'Covid19', page: "./yibar" },
   { label: "About", page: "./about" }
 ];
@@ -115,7 +119,6 @@ const NavBar = ({ value, setValue }) => {
 const appBarStyle = {
   height: "88px",
   backgroundColor: "#00B5E2",
-  backgroundImage: `url(${HeaderBackground})`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center"
 };

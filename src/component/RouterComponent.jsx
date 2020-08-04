@@ -4,7 +4,11 @@ import YibarComponent from "./YibarComponent";
 import GraphComponent from "./GraphComponent";
 import MorgageComponent from "./MorgageComponent";
 import AboutComponent from "./AboutComponent";
-import IndexComponent from './IndexComponent'
+import IndexComponent from './IndexComponent';
+import UcDataComponent from './UcDataComponent';
+import UcRankComponent from './UcRankComponent';
+import UcMapComponent from './UcMapComponent';
+import SchoolAreaComponent from './SchoolAreaComponent';
 
 const AppRouter = () => {
   const [value, setValue] = React.useState(0);
@@ -20,6 +24,13 @@ const AppRouter = () => {
               <IndexComponent {...props} value={value} setValue={setValue} />
             )}
           />
+          <Route
+            path="/schoolarea"
+            render={props => (
+              <SchoolAreaComponent {...props} value={value} setValue={setValue} />
+            )}
+          />
+
           <Route
             path="/yibar"
             exact
@@ -39,6 +50,25 @@ const AppRouter = () => {
               <GraphComponent {...props} value={value} setValue={setValue} />
             )}
           />
+          <Route
+            path="/ucdata"
+            render={props => (
+              <UcDataComponent {...props} value={value} setValue={setValue} />
+            )}
+          />
+          <Route
+            path="/ucrank"
+            render={props => (
+              <UcRankComponent {...props} value={value} setValue={setValue} />
+            )}
+          />
+          <Route
+            path="/ucmap"
+            render={props => (
+              <UcMapComponent {...props} value={value} setValue={setValue} />
+            )}
+          />
+
           <Route
             path="/about"
             render={props => (

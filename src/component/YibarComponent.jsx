@@ -289,7 +289,7 @@ class YibarComponent extends Component {
     this.draw(data)
   }
   draw(data) {
-    var zoomStart = data.length <= 14 ? 0 : Math.floor((data.length - 14)*100/data.length);
+    var zoomStart = data.length <= 60 ? 0 : Math.floor((data.length - 60)*100/data.length);
 
     this.chart1.setOption({
       title: {
@@ -300,7 +300,10 @@ class YibarComponent extends Component {
         selected: {
           'Tested': false,
           'Tested Increase': false,
-          'Pending': false
+          'Pending': false,
+          'Confirmed': false,
+          'Death': false,
+          'Hospitalized': false,
         }
       },
       tooltip: {},
@@ -327,7 +330,7 @@ class YibarComponent extends Component {
         },
         {
           name: 'Confirmed Increased',
-          type: 'line',
+          type: 'bar',
           data: data.map((d)=>d.positiveIncrease)
         },
         {
@@ -337,7 +340,7 @@ class YibarComponent extends Component {
         },
         {
           name: 'Death Increased',
-          type: 'line',
+          type: 'bar',
           data: data.map((d) => d.deathIncrease)
         },
         {
@@ -347,7 +350,7 @@ class YibarComponent extends Component {
         },
         {
           name: 'HospitalizedIncrease',
-          type: 'line',
+          type: 'bar',
           data: data.map((d)=>d.hospitalizedIncrease)
         },
         {
@@ -357,7 +360,7 @@ class YibarComponent extends Component {
         },
         {
           name: 'Tested Increase',
-          type: 'line',
+          type: 'bar',
           data: data.map((d)=>d.totalTestResultsIncrease)
         },
         {

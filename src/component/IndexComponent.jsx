@@ -148,6 +148,17 @@ class IndexComponent extends Component {
                     url="https://nextstrain.org/ncov/global"
                   />
                 </ListItem>
+                <ListItem>
+                  <ReactTinyLink
+                    header="Health map for Coronavrius"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://www.healthmap.org/covid-19/"
+                  />
+                </ListItem>
 
                 </List>
               </Box>
@@ -163,7 +174,7 @@ class IndexComponent extends Component {
                 buttonText="Suggest a Webiste"
                 handleClose={() => console.log("handleclose")}
                 handleSubmit={(data) => 
-                    fetch('http://www.study32.com/feedbacks', {
+                    fetch('https://www.study32.com/feedbacks', {
                         headers: {
                             Accept: 'application/json',
                             'Content-Type': 'application/json'
