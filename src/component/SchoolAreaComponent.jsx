@@ -9,7 +9,7 @@ class SchoolAreaComponent extends Component {
       <div>
         <NavBar value={value} setValue={setValue}/>
 
-        <Iframe url="http://api.yibar.com/schoolarea"
+        <Iframe url="https://api.yibar.com/schoolarea"
                 width="100%"
                 height="100%"
                 id="ucdata"

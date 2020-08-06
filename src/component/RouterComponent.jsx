@@ -5,6 +5,7 @@ import GraphComponent from "./GraphComponent";
 import MorgageComponent from "./MorgageComponent";
 import AboutComponent from "./AboutComponent";
 import IndexComponent from './IndexComponent';
+import UcDataAllComponent from './UcDataAllComponent';
 import UcDataComponent from './UcDataComponent';
 import UcRankComponent from './UcRankComponent';
 import UcMapComponent from './UcMapComponent';
@@ -28,6 +29,12 @@ const AppRouter = () => {
             path="/schoolarea"
             render={props => (
               <SchoolAreaComponent {...props} value={value} setValue={setValue} />
+            )}
+          />
+          <Route
+            path="/ucdataall"
+            render={props => (
+              <UcDataAllComponent {...props} value={value} setValue={setValue} />
             )}
           />
 

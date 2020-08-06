@@ -21,10 +21,11 @@ const style = {
 
 const menus = [
   { label: "Home", page: "./" },
-  { label: 'School Area', page: "./schoolarea" },
-  { label: 'UC Admission', page: "./ucdata" },
-  { label: 'UC Rank', page: "./ucrank" },
-  { label: 'UC Map', page: "./ucmap" },
+  { label: 'UC Data', page: "./ucdataall" },
+  // { label: 'School Area', page: "./schoolarea" },
+  // { label: 'UC Admission', page: "./ucdata" },
+  // { label: 'UC Rank', page: "./ucrank" },
+  // { label: 'UC Map', page: "./ucmap" },
   { label: 'Covid19', page: "./yibar" },
   { label: "About", page: "./about" }
 ];

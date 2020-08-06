@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import NavBar from './NavBar'
 import Iframe from 'react-iframe'
 
-class UcMapComponent extends Component {
+class UcDataAllComponent extends Component {
   render() {
     const {value, setValue} = this.props
     return(
       <div>
         <NavBar value={value} setValue={setValue}/>
 
-        <Iframe url="https://api.yibar.com/map"
+        <Iframe url="https://api.yibar.com"
                 width="100%"
                 height="100%"
                 id="ucdata"
@@ -20,4 +20,4 @@ class UcMapComponent extends Component {
     )
   }
 }
-export default UcMapComponent;
+export default UcDataAllComponent;

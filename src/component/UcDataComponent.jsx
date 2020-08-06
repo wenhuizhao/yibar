@@ -9,7 +9,7 @@ class UcDataComponent extends Component {
       <div>
         <NavBar value={value} setValue={setValue}/>
 
-        <Iframe url="http://api.yibar.com/graph"
+        <Iframe url="https://api.yibar.com/graph"
                 width="100%"
                 height="100%"
                 id="ucdata"

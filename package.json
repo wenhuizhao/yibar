@@ -22,8 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "aws s3 cp build s3://yibar-web --recursive && npm run invalidate-cache",
-    "invalidate-cache": "aws cloudfront create-invalidation --distribution-id E18P3CM2K25E0J --path '/*'",
+    "deploy": "aws s3 cp build s3://yibar-web --recursive",
+    "reset-cache": "aws cloudfront create-invalidation --distribution-id E1EYLSVG672N41 --path '/*'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
