@@ -14,7 +14,8 @@ function App() {
 }
 
 const style= {
-  padding: 0
+  padding: 0,
+  maxWidth: "100%"
 }
 // const containerStyle = {
 //   flex: 1

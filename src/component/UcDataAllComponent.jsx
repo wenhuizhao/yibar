@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import NavBar from './NavBar'
-import Iframe from 'react-iframe'
+import IframeResizer from 'iframe-resizer-react'
 
 class UcDataAllComponent extends Component {
   render() {
@@ -9,13 +9,7 @@ class UcDataAllComponent extends Component {
       <div>
         <NavBar value={value} setValue={setValue}/>
 
-        <Iframe url="https://api.yibar.com"
-                width="100%"
-                height="100%"
-                id="ucdata"
-                className="UCData"
-                display="initial"
-                position="absolute"/>
+        <IframeResizer src="http://localhost:4000" width="100%" height="100%"/>
       </div>
     )
   }

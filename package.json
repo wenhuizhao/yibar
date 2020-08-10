@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "echarts": "^4.7.0",
+    "iframe-resizer": "^4.2.11",
+    "iframe-resizer-react": "^1.0.4",
     "moment": "^2.24.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
