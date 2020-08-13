@@ -28,17 +28,6 @@ class IndexComponent extends Component {
                 <List>
                 <ListItem>
                   <ReactTinyLink
-                    header="World Information"
-                    cardSize="small"
-                    showGraphic={true}
-                    maxLine={4}
-                    minLine={1}
-                    width={"100vw"}
-                    url="https://www.worldometers.info/coronavirus/"
-                  />
-                </ListItem>
-                <ListItem>
-                  <ReactTinyLink
                     header="Johns Hopkins University interactive map"
                     cardSize="small"
                     showGraphic={true}
@@ -48,6 +37,65 @@ class IndexComponent extends Component {
                     url="https://coronavirus.jhu.edu/map.html"
                   />
                 </ListItem>
+                <ListItem>
+                  <ReactTinyLink
+                    header="Google COVID-19 Interactive Map"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://www.google.com/covid19-map"
+                  />
+                </ListItem>
+                
+                <ListItem>
+                  <ReactTinyLink
+                    header="Facebook COVID-19 Interactive Map"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://covid-survey.dataforgood.fb.com/"
+                  />
+                </ListItem>
+
+                <ListItem>
+                  <ReactTinyLink
+                    header="COVID-19 Rt: Effective Reproduction Number"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://rt.live/"
+                  />
+                </ListItem>
+
+                <ListItem>
+                  <ReactTinyLink
+                    header="Baseline COVID-19 testing program"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={2}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://www.projectbaseline.com/study/covid-19/"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ReactTinyLink
+                    header="World Information"
+                    cardSize="small"
+                    showGraphic={true}
+                    maxLine={4}
+                    minLine={1}
+                    width={"100vw"}
+                    url="https://www.worldometers.info/coronavirus/"
+                  />
+                </ListItem>
+
                 <ListItem>
                   <ReactTinyLink
                     header="LA times California Coronavirus Data"
@@ -91,17 +139,6 @@ class IndexComponent extends Component {
                     minLine={1}
                     width={"100vw"}
                     url="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports"
-                  />
-                </ListItem>
-                <ListItem>
-                  <ReactTinyLink
-                    header="Google COVID-19 Community Mobility Report"
-                    cardSize="small"
-                    showGraphic={true}
-                    maxLine={2}
-                    minLine={1}
-                    width={"100vw"}
-                    url="https://www.google.com/covid19/mobility/"
                   />
                 </ListItem>
                 <ListItem>
@@ -174,7 +211,7 @@ class IndexComponent extends Component {
                 buttonText="Suggest a Webiste"
                 handleClose={() => console.log("handleclose")}
                 handleSubmit={(data) => 
-                    fetch('https://www.study32.com/feedbacks', {
+                    fetch('https://api.yibar.com/feedbacks', {
                         headers: {
                             Accept: 'application/json',
                             'Content-Type': 'application/json'

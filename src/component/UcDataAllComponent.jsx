@@ -9,7 +9,7 @@ class UcDataAllComponent extends Component {
       <div>
         <NavBar value={value} setValue={setValue}/>
 
-        <IframeResizer src="http://localhost:4000" width="100%" height="100%"/>
+        <IframeResizer src="https://api.yibar.com" width="100%" height="100%"/>
       </div>
     )
   }
