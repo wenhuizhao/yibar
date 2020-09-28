@@ -54,7 +54,7 @@ class YibarComponent extends Component {
   }
 
   loadUsCurrent() {
-    axios.get('https://covidtracking.com/api/us')
+    axios.get('https://api.covidtracking.com/api/us')
         .then((resp) => {
           const data = resp.data[0];
           this.setState({
@@ -63,7 +63,7 @@ class YibarComponent extends Component {
         })
   }
   loadUsDaily() {
-    axios.get('https://covidtracking.com/api/us/daily')
+    axios.get('https://api.covidtracking.com/api/us/daily')
       .then((resp) => {
         //console.log(resp)
         this.usDailyData = resp.data.reverse()
@@ -71,7 +71,7 @@ class YibarComponent extends Component {
       })
   }
   loadStateDaily() {
-    axios.get('https://covidtracking.com/api/states/daily')
+    axios.get('https://api.covidtracking.com/api/states/daily')
       .then((resp) => {
         //console.log(resp.data)
         const today = resp.data[0].date
@@ -94,7 +94,7 @@ class YibarComponent extends Component {
       })
   }
   loadStateInfo() {
-    axios.get('https://covidtracking.com/api/states/info')
+    axios.get('https://api.covidtracking.com/api/states/info')
       .then((resp)=>{
         const stateInfo = resp.data.reduce((obj, item)=>{
           obj[item.state] = item;
@@ -124,7 +124,7 @@ class YibarComponent extends Component {
           }
         });
 
-        axios.get('https://covidtracking.com/api/states')
+        axios.get('https://api.covidtracking.com/api/states')
           .then((resp)=>{
             let min = 1000000
             let max = 0

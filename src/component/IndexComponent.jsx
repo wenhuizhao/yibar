@@ -127,7 +127,7 @@ class IndexComponent extends Component {
                     maxLine={2}
                     minLine={1}
                     width={"100vw"}
-                    url="https://covidtracking.com"
+                    url="https://api.covidtracking.com"
                   />
                 </ListItem>
                 <ListItem>

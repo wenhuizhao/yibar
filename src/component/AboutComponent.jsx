@@ -27,7 +27,7 @@ class AboutComponent extends Component {
                   University of California Admission
                 </a>. 
                  COVID19 data is provided by 
-                <a href="https://covidtracking.com/"> The COVID Tracking Project. </a>
+                <a href="https://api.covidtracking.com/"> The COVID Tracking Project. </a>
               </Box>
               <Typography variant="h6">
                 How "The COVID Tracking Project" collect data?
