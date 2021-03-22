@@ -18,7 +18,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import echarts from 'echarts'
+import * as echarts from 'echarts';
 import axios from 'axios'
 import moment from 'moment'
 import { statesHash, statesReverseHash } from './states_hash'
