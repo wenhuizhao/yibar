@@ -56,19 +56,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function UcComponent({ match, location }) {
+export default function UcComponent({ match, location, value, setValue }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState(0);
   const query = qs.parse(location.search.substring(1)); //remove ? in ?schoolId=xx
   console.log('location.search:', location.search, query);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTabValue(newValue);
   };
 
   const handleChangeIndex = (index) => {
-    setValue(index);
+    setTabValue(index);
   };
 
   return (
@@ -77,7 +77,7 @@ export default function UcComponent({ match, location }) {
 
       <Toolbar position="static" color="default" className={classes.tab}>
         <Tabs
-          value={value}
+          value={tabValue}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
@@ -92,19 +92,19 @@ export default function UcComponent({ match, location }) {
       </Toolbar>
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
+        index={tabValue}
         onChangeIndex={handleChangeIndex}
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
+        <TabPanel value={tabValue} index={0} dir={theme.direction}>
           <UcDataComponent query={query} />
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel value={tabValue} index={1} dir={theme.direction}>
           <UcRankComponent query={query} />
         </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
+        <TabPanel value={tabValue} index={2} dir={theme.direction}>
           <UcMapComponent query={query} />
         </TabPanel>
-        <TabPanel value={value} index={3} dir={theme.direction}>
+        <TabPanel value={tabValue} index={3} dir={theme.direction}>
           <SchoolAreaComponent query={query} />
         </TabPanel>
       </SwipeableViews>
