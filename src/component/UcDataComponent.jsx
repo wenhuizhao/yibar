@@ -14,7 +14,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 import { VerticalAlignTop } from '@material-ui/icons';
 import axios from 'axios';
-import { Drawer } from '@material-ui/core';
 
 const containerStyle = {
   padding: 10
@@ -39,6 +38,7 @@ class UcDataComponent extends Component {
       top: 10,
       schoolOption: [],
       locationOption: [],
+      locationValue: 'Bay Area'
     };
     this.locationData = [];
     this.schoolData = [];
@@ -66,9 +66,6 @@ class UcDataComponent extends Component {
     this.gData.years = [];
     this.gData.series = [];
     this.schools = [];
-    //$('#input-school').val('');
-    //$('#input-location').val('');
-    //$('#graph-info').text('');
 
     this.chart.clear();
   }
@@ -76,7 +73,7 @@ class UcDataComponent extends Component {
   async componentDidMount() {
     this.chart = echarts.init(document.getElementById("mainChart"));
     this.chart.on("click", async (params) => {
-      console.log("mainChart click", params);
+      //console.log("mainChart click", params);
       if (params.seriesType === "bar") {
         await searchRace(
           this.gData,
@@ -87,18 +84,12 @@ class UcDataComponent extends Component {
           this.state.categoryId,
           this.state.top
         );
-        console.log("gData", this.gData);
+        //console.log("gData", this.gData);
         draw(this.chart, this.gData);
       }
     });
 
     this.chart.on("mouseover", async (params) => {
-      console.log(
-        "mainChart mouseover:params",
-        params,
-        ", schools:",
-        this.schools
-      );
       if (params.seriesType === "bar") {
         await searchRace(
           this.gData,
@@ -109,12 +100,12 @@ class UcDataComponent extends Component {
           this.state.categoryId,
           this.state.top
         );
-        console.log("gData", this.gData);
+        //console.log("gData", this.gData);
         draw(this.chart, this.gData);
       }
     });
     this.chart.on("mouseout", (params) => {
-      console.log("mainChart mouseout", params);
+      //console.log("mainChart mouseout", params);
       this.clearRace(params["name"], params["seriesName"]);
     });
     if (this.props.query.schoolId) {
@@ -218,10 +209,11 @@ class UcDataComponent extends Component {
   };
 
   onLocationChange = async (event, value, reason) => {
-    console.log("location change to:", value);
+    //console.log("location change to:", value);
     if (!value || value.length === 0) {
       return;
     }
+    this.setState({locationValue: value});
     const loc = this.locationData.find((d) => d.label === value);
     if (!loc) {
       return;
@@ -238,7 +230,7 @@ class UcDataComponent extends Component {
       this.races,
       this.state.top
     );
-    console.log(this.gData);
+    //console.log(this.gData);
     draw(this.chart, this.gData);
   };
 
@@ -256,12 +248,6 @@ class UcDataComponent extends Component {
   };
 
   onSchoolChange = async (event, value, reason) => {
-    console.log(
-      "school change to:",
-      value,
-      " this.schoolData:",
-      this.schoolData
-    );
     if (!value || value.length === 0) {
       return;
     }
@@ -271,7 +257,7 @@ class UcDataComponent extends Component {
     }
     this.schoolId = sch.id;
     await this.addSchool(sch.id, sch.value);
-    console.log(this.gData);
+    //console.log(this.gData);
     draw(this.chart, this.gData);
   };
 
@@ -283,7 +269,7 @@ class UcDataComponent extends Component {
     if (this.schools.find((s) => s.schoolId === school.schoolId)) {
       return;
     }
-    console.log(school);
+    //console.log(school);
     this.schools.push(school);
     await searchSchools(
       this.gData,
@@ -297,7 +283,7 @@ class UcDataComponent extends Component {
 
   render() {
     const { value, setValue, query } = this.props;
-    console.log("render query:", query);
+    //console.log("render query:", query);
     return (
       <div>
         <Grid container direction="column" style={containerStyle}>
@@ -363,6 +349,7 @@ class UcDataComponent extends Component {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    value={this.state.locationValue}
                     label="city/county/zip"
                     margin="normal"
                     variant="outlined"

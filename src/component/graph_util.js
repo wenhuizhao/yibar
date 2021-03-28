@@ -42,7 +42,7 @@ async function searchSchools(gData, schools, campusId, categoryId, races, top){
   }
   //mainChart.showLoading();
   const resp = await axios.post(`${API_URL}/enrollments/search?&authenticity_token=${AUTH_TOKEN}`, params)
-  console.log(resp.data);
+  //console.log(resp.data);
   processData(gData, resp.data);
   return;
 }
@@ -75,7 +75,7 @@ async function searchLocation(gData, schools, location, locationType, campusId, 
 
 
 async function searchRace(gData, schools, year, schoolName, campusId, categoryId, top){
-  console.log('searchRace', year, schoolName);
+  //console.log('searchRace', year, schoolName);
   const schoolId = (schools.find(s=>s.schoolName == schoolName) || {}).schoolId;
   if (!schoolId) {
     return;
@@ -89,7 +89,7 @@ async function searchRace(gData, schools, year, schoolName, campusId, categoryId
   }
   //mainChart.showLoading();
   const resp = await axios.post(`${API_URL}/enrollments/search?&authenticity_token=${AUTH_TOKEN}`, params);
-  console.log('resp:', resp);
+  //console.log('resp:', resp);
   processRaceData(gData, resp.data);
   return;   
 }
@@ -149,7 +149,7 @@ function processData(gData, data) {
     });
   });
   //mainChart.hideLoading();
-  console.log('gData:', gData);
+  //console.log('gData:', gData);
   return;
 }
 
@@ -196,7 +196,7 @@ function processData(gData, data) {
       });    
     }
   });
-  console.log(gData);
+  //console.log(gData);
 }*/
 export function draw(chart, gData) {
 
