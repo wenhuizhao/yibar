@@ -1,6 +1,9 @@
-import React, { useState, useEffect, createRef } from 'react'
+import React, {useEffect, useStyle } from 'react'
+import Grid from "@material-ui/core/Grid"
+import { makeStyles } from "@material-ui/core/styles"
 import axios from 'axios'
 import { API_URL, AUTH_TOKEN, GOOGLE_MAP_API_KEY } from "./graph_util"
+import { Typography } from '@material-ui/core'
 const campusId = 2; //berkeley
 const campusName = {
   1: "Universitywide",
@@ -15,7 +18,17 @@ const campusName = {
   10: "Santa Cruze",
 };
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  container: {
+    padding: '2px'
+  }
+}));
+
 function UcMapComponent() {
+  const classes = useStyles()
   const googleMapRef = React.createRef()
   const bayarea = { lat: 37.453, lng: -122.1817 }
   let googleMap;
@@ -109,11 +122,16 @@ function UcMapComponent() {
   }
 
   return (
-    <div
-      id="google-map"
-      ref={googleMapRef}
-      style={{ width: '100%', height: '600px' }}
-    />
-  )
+    <Grid container direction="column" className={classes.root}>
+      <Typography variant="h6">
+        Map view of high school with top uc admission data in california
+      </Typography>
+      <div
+        id="google-map"
+        ref={googleMapRef}
+        style={{ width: "100%", height: "600px" }}
+      />
+    </Grid>
+  );
 }
 export default UcMapComponent

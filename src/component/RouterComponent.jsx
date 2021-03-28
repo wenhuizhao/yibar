@@ -23,7 +23,7 @@ const AppRouter = () => {
             path="/"
             exact
             render={props => (
-              <IndexComponent {...props} value={value} setValue={setValue} />
+              <UcComponent {...props} value={value} setValue={setValue} />
             )}
           />
           <Route
@@ -33,9 +33,9 @@ const AppRouter = () => {
             )}
           />
           <Route
-            path="/uc"
+            path="/links"
             render={props => (
-              <UcComponent {...props} value={value} setValue={setValue} />
+              <IndexComponent {...props} value={value} setValue={setValue} />
             )}
           />
 

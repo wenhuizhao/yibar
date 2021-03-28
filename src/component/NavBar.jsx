@@ -21,14 +21,13 @@ const style = {
 
 const menus = [
   { label: "Home", page: "./" },
-  { label: 'Uc Data', page: "./uc" },
   //{ label: 'UC Data', page: "./ucdataall" },
   // { label: 'School Area', page: "./schoolarea" },
   // { label: 'UC Admission', page: "./ucdata" },
   // { label: 'UC Rank', page: "./ucrank" },
   // { label: 'UC Map', page: "./ucmap" },
   { label: 'Covid19', page: "./yibar" },
-  { label: "About", page: "./about" }
+  { label: "Links", page: "./links" }
 ];
 const Nav = ({ value, setValue }) => {
   let history = useHistory();

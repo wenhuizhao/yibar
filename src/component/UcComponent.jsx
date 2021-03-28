@@ -84,8 +84,8 @@ export default function UcComponent({ match, location, value, setValue }) {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Graph" {...a11yProps(0)} />
-          <Tab label="Rank" {...a11yProps(1)} />
+          <Tab label="Rank" {...a11yProps(0)} />
+          <Tab label="Graph" {...a11yProps(1)} />
           <Tab label="Map View" {...a11yProps(2)} />
           <Tab label="Attend Area" {...a11yProps(3)} />
         </Tabs>
@@ -96,10 +96,10 @@ export default function UcComponent({ match, location, value, setValue }) {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={tabValue} index={0} dir={theme.direction}>
-          <UcDataComponent query={query} />
+          <UcRankComponent query={query} />
         </TabPanel>
         <TabPanel value={tabValue} index={1} dir={theme.direction}>
-          <UcRankComponent query={query} />
+          <UcDataComponent query={query} />
         </TabPanel>
         <TabPanel value={tabValue} index={2} dir={theme.direction}>
           <UcMapComponent query={query} />

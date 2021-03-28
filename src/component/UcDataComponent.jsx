@@ -287,8 +287,8 @@ class UcDataComponent extends Component {
     return (
       <div>
         <Grid container direction="column" style={containerStyle}>
-          <Grid container item>
-            <Typography variant="h5">
+          <Grid container item style={{padding: "2px"}}>
+            <Typography variant="h6">
               Search University of California application and admission data by
               city, county or high schools (Data Source: California Education
               Department).

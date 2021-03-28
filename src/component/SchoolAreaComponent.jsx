@@ -112,7 +112,7 @@ function SchoolAreaComponent() {
 
   return (
     <div style={{padding: '10px'}}>
-      <Typography variant='h5'>
+      <Typography variant='h6'>
         Search school attendance area
       </Typography>
       <div style={{ height: "700px", marginTop: "10px", zIndex: 1000}}>

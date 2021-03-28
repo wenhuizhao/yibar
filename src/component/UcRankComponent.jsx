@@ -11,6 +11,7 @@ import { DataGrid, GridRowsProp, GridColDef } from '@material-ui/data-grid';
 import axios from 'axios';
 import { API_URL, searchLocationRank } from './graph_util'
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,6 +120,11 @@ export default function UcRankComponent() {
 
   return (
     <Grid container direction="column" className={classes.root}>
+      <Grid item style={{ padding: '4px'}}>
+        <Typography variant="h6">
+          UC admission data ranking by city and area:
+        </Typography>
+      </Grid>
       <Grid container item style={{padding: '4px'}}>
         <Grid item xs={12} sm={6}>
           <Autocomplete
